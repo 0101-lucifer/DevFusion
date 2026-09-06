@@ -3,7 +3,6 @@ import { auth } from './firebase';
 import { 
     signInWithPopup, 
     GoogleAuthProvider, 
-    FacebookAuthProvider, 
     signOut 
 } from 'firebase/auth';
 
@@ -20,18 +19,6 @@ export default function LoginUI() {
         } catch (err) {
             console.error(err);
             setError('Failed to log in with Google.');
-        }
-    };
-
-    const handleFacebookLogin = async () => {
-        const provider = new FacebookAuthProvider();
-        try {
-            const result = await signInWithPopup(auth, provider);
-            setUser(result.user);
-            setError('');
-        } catch (err) {
-            console.error(err);
-            setError('Failed to log in with Facebook.');
         }
     };
 
@@ -87,13 +74,6 @@ export default function LoginUI() {
                             Continue with Google
                         </button>
 
-                        <button 
-                            onClick={handleFacebookLogin} 
-                            className="vision-pill w-full py-4 flex justify-center items-center gap-3 soft-glow !bg-[#1877F2]/10 dark:!bg-[#1877F2]/20 border border-[#1877F2]/30 !text-[#1877F2] dark:!text-blue-400 hover:!bg-[#1877F2] hover:!text-white transition-all font-bold backdrop-blur-md"
-                        >
-                            <i className="fab fa-facebook-f text-lg"></i> 
-                            Continue with Facebook
-                        </button>
                     </div>
                 </div>
             )}
